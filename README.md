@@ -1,22 +1,57 @@
-Squash league app. You can make your own reservations, join others reservations and search resesvations based on your skills. 
+# Squash League
 
-Main site:
-![image](https://user-images.githubusercontent.com/34575120/37787785-16c1e8c2-2e00-11e8-83d5-f80143b05483.png)
-User history:
-![image](https://user-images.githubusercontent.com/34575120/37788046-b97825f4-2e00-11e8-9959-688985b3f5e0.png)
-Creating reservations:
-![image](https://user-images.githubusercontent.com/34575120/37788084-d6421af0-2e00-11e8-911b-c93dbe0f748a.png)
+Platforma do zarządzania ligą squasha z systemem rankingowym ELO. Rezerwuj korty, dopasowuj przeciwników po poziomie umiejętności, śledź wyniki i wspinaj się w rankingu.
 
+## Stack technologiczny
 
-Features:
-- login and signin
-- creating, joining, searching, managing reservations
-- games history with scores
-- user statistics and ranking
-- edit profile
-- adding avatars
+- **Next.js 16** (App Router, TypeScript)
+- **Prisma 6** + PostgreSQL
+- **Auth.js v5** (credentials + Google OAuth)
+- **Tailwind CSS 4** + shadcn/ui components
+- **Zod** (walidacja), **Vitest** (testy)
 
-ToDo list:
-- login by facebook
-- e-mail confirmation
-- achieve better rank due to winning games
+## Funkcje
+
+- Rejestracja z wyborem poziomu umiejętności (Szturmowiec / Padawan / Rycerz Jedi / Mistrz Yoda)
+- Tworzenie i dołączanie do rezerwacji
+- Wyszukiwanie rezerwacji po poziomie, dacie, centrum
+- System wyników z potwierdzeniem obu graczy
+- Ranking ELO automatycznie aktualizowany po meczu
+- Profile graczy ze statystykami
+- System powiadomień
+- Zarządzanie centrami sportowymi
+
+## Uruchomienie
+
+```bash
+# 1. Baza danych
+docker compose up -d
+
+# 2. Instalacja zależności
+npm install
+
+# 3. Schema → baza danych
+npm run db:push
+
+# 4. Dane testowe (5 centrów sportowych, 5 użytkowników)
+npm run db:seed
+
+# 5. Start dev server
+npm run dev
+```
+
+Aplikacja dostępna pod: http://localhost:3000
+
+Konta testowe (hasło: `Test1234`):
+- jan@example.com, anna@example.com, piotr@example.com, marta@example.com, tomek@example.com
+
+## Skrypty
+
+| Komenda | Opis |
+|---------|------|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run test` | Testy jednostkowe |
+| `npm run db:push` | Push schema do DB |
+| `npm run db:seed` | Seed data |
+| `npm run db:studio` | Prisma Studio (GUI) |
